@@ -18,4 +18,9 @@ const Route = use('Route')
 
 Route.on('/').render('chat')
 
+Route.post('/user', 'UserController.create')
+
+Route.put('/update', 'UserController.update')
+
+Route.get('/playlist', 'UserController.show')
 
