@@ -14,9 +14,15 @@
 /** @type {import('@adonisjs/lucid/src/Factory')} */
 const Factory = use('Factory')
 
-Factory.blueprint('App/Models/User', (faker, i,user) => {
+Factory.blueprint('App/Models/User', (faker, i, user) => {
   return {
+    display_name: user.display_name,
+    active: faker.bool(),
+    topic_id: '1',
+    playlist_master: 'The one',
     spotify_id: user.spotify_id,
-    uri_link: user.uri_link
+    uri_link: user.uri_link,
+    profile_pic: '',
+    premium: true
   }
 })
