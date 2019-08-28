@@ -8,6 +8,21 @@ class UserController {
     response.send({ uri_link: user.rows[0].uri_link ? user.rows[0].uri_link : '7GhIk7Il098yCjg4BQjzvb' });
   }
 
+  async activeUsers({request, response}){
+    const activeUsers = await User.query().where('active', '=', '1').fetch();
+    response.send(activeUsers);
+  }
+
+  async activeToggle({request, response}){
+    const {spotify_id, topic_id} = request.all()
+    const user = await User.findBy('spotify_id',spotify_id);
+    // console.log(user);
+    user.topic_id = topic_id;
+    user.active = (topic_id ? 1 : 0);
+    await user.save();
+    response.send(user);
+  }
+
   async create({ request, response }) {
     const { spotify_id } = request.all();
     const user = await User.query().where(`spotify_id`, '=', spotify_id).fetch();

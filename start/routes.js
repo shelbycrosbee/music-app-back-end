@@ -24,3 +24,7 @@ Route.put('/update', 'UserController.update')
 
 Route.get('/playlist', 'UserController.show')
 
+Route.get('/users/active', 'UserController.activeUsers');
+
+Route.put('/users/activeStatus', 'UserController.activeToggle')
+

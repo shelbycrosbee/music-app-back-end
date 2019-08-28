@@ -1,6 +1,6 @@
 'use strict'
 const Ws = use('Ws')
-let playlistOwner = {};
+let playlistOwner = { soup: "11"};
 
 class PlaylistController {
   constructor({ socket, request }) {
@@ -15,14 +15,14 @@ class PlaylistController {
   */
 
   onInitialize({ spotify_id, topic_id }) {
-    console.log(spotify_id);
-    console.log(topic_id);
+    // console.log(spotify_id);
+    // console.log(topic_id);
     if (spotify_id === topic_id) {
       playlistOwner[topic_id] = this.socket.id;
     }
-    this.socket.broadcastToAll('message', playlistOwner[topic_id]);
     console.log(playlistOwner[topic_id]);
-    console.log(playlistOwner);
+    this.socket.broadcastToAll('message', `joined topic ${topic_id}`);
+    // console.log(playlistOwner);
   }
 
   onVar(message) {
@@ -31,8 +31,9 @@ class PlaylistController {
     // this.socket.emitTo('action', 'message', this.playlistOwner)
   }
 
-  onSingleSend(spotify_id) {
-    Ws.getChannel('playlist:*').topic(`playlist:${spotify_id}`).broadcast('event name', playlistOwner[topic_id])
+  onSingleSend({spotify_id, topic_id}) {
+    //Ws.getChannel('playlist:*').topic(`playlist:${spotify_id}`).broadcastToAll('[event name]', playlistOwner[topic_id])
+    this.socket.broadcast('[event name]', 'Hello People!')
   }
 }
 
