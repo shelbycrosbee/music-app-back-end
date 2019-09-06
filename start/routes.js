@@ -26,5 +26,9 @@ Route.get('/playlist', 'UserController.show')
 
 Route.get('/users/active', 'UserController.activeUsers');
 
-Route.put('/users/activeStatus', 'UserController.activeToggle')
+Route.put('/users/activeStatus', 'UserController.activeToggle');
+
+Route.put('/users/setTopicID', 'UserController.setTopicID');
+
+Route.put('/users/toggleActive', 'UserController.toggleActive');
 

@@ -43,6 +43,24 @@ class UserController {
     response.send(user);
   }
 
+  async setTopicID({request, response}) {
+    const { spotify_id, topic_id} = request.all();
+    const user = await User.findBy('spotify_id',spotify_id);
+    user.topic_id = topic_id;
+    await user.save();
+    response.send(user);
+  }
+
+  async toggleActive({request, response}) {
+    const { spotify_id } = request.all();
+    const user = await User.findBy('spotify_id',spotify_id);
+    user.active = !user.active;
+    await user.save();
+    response.send(user);
+  }
+
+
+
 }
 
 module.exports = UserController
