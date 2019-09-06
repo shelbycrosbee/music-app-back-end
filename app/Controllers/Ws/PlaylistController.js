@@ -32,7 +32,7 @@ class PlaylistController {
   }
 
   onGivePosition(message) {
-    this.socket.emitTo('join', message.playlist, [message.friend_id]);
+    this.socket.emitTo('giveMeMoney', message.playlist, [message.friend_id]);
   }
 
   onAqui(message) {
