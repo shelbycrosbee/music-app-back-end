@@ -25,14 +25,14 @@ class PlaylistController {
     // console.log(playlistOwner);
   }
 
-  onVar(message) {
-    console.log(message);
-    this.socket.broadcastToAll('message', playlistOwner[topic_id])
-    // this.socket.emitTo('action', 'message', this.playlistOwner)
-  }
+  // onVar(message) {
+  //   console.log(message);
+  //   this.socket.broadcastToAll('message', playlistOwner[topic_id])
+  //   // this.socket.emitTo('action', 'message', this.playlistOwner)
+  // }
 
   onGivePosition(message) {
-    this.socket.emitTo('giveMeMoney', message.playlist, [message.friend_id]);
+    this.socket.emitTo('join', message.playlist, [message.friend_id]);
   }
 
   onAqui(message) {
@@ -40,10 +40,10 @@ class PlaylistController {
     this.socket.emitTo('donde', { friend_id: this.socket.id }, [playlistOwner[message.topic_id]])
   }
 
-  onSingleSend({ spotify_id, topic_id }) {
-    //Ws.getChannel('playlist:*').topic(`playlist:${spotify_id}`).broadcastToAll('[event name]', playlistOwner[topic_id])
-    this.socket.broadcast('[event name]', 'Hello People!')
-  }
+  // onSingleSend({ spotify_id, topic_id }) {
+  //   //Ws.getChannel('playlist:*').topic(`playlist:${spotify_id}`).broadcastToAll('[event name]', playlistOwner[topic_id])
+  //   this.socket.broadcast('[event name]', 'Hello People!')
+  // }
 }
 
 module.exports = PlaylistController

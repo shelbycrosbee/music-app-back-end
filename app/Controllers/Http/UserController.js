@@ -5,7 +5,7 @@ class UserController {
   async show({ request, response }) {
     const { spotify_id } = request.all();
     const user = await User.query().where(`spotify_id`, '=', spotify_id).fetch();
-    response.send({ uri_link: user.rows[0].uri_link ? user.rows[0].uri_link : '7GhIk7Il098yCjg4BQjzvb' });
+    response.send({ uri_link: user.rows[0].uri_link ? `spotify:playlist:${user.rows[0].uri_link}` : 'spotify:playlist:7GhIk7Il098yCjg4BQjzvb' });
   }
 
   async activeUsers({request, response}){
@@ -14,11 +14,11 @@ class UserController {
   }
 
   async activeToggle({request, response}){
-    const {spotify_id, topic_id} = request.all()
+    const {spotify_id, topic_id, active} = request.all()
     const user = await User.findBy('spotify_id',spotify_id);
-    // console.log(user);
+    // console.log(user)
     user.topic_id = topic_id;
-    user.active = (topic_id ? 1 : 0);
+    user.active = active;
     await user.save();
     response.send(user);
   }
