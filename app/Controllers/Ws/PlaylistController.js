@@ -1,6 +1,9 @@
 'use strict'
 const Ws = use('Ws')
+const User=use('App/Models/User')
 let playlistOwner = {};
+let activeUsers = [];
+
 
 class PlaylistController {
   constructor({ socket, request }) {
@@ -8,13 +11,8 @@ class PlaylistController {
     this.request = request;
   }
 
-  /*
-  on[X](params){
-    this.socket.function('event name', [return_value]);
-  }
-  */
 
-  onInitialize({ spotify_id, topic_id }) {
+ async onInitialize({ spotify_id, topic_id }) {
     // console.log(spotify_id);
     // console.log(topic_id);
     if (spotify_id === topic_id) {
@@ -25,12 +23,6 @@ class PlaylistController {
     // console.log(playlistOwner);
   }
 
-  // onVar(message) {
-  //   console.log(message);
-  //   this.socket.broadcastToAll('message', playlistOwner[topic_id])
-  //   // this.socket.emitTo('action', 'message', this.playlistOwner)
-  // }
-
   onGivePosition(message) {
     this.socket.emitTo('join', message.playlist, [message.friend_id]);
   }
@@ -40,10 +32,6 @@ class PlaylistController {
     this.socket.emitTo('donde', { friend_id: this.socket.id }, [playlistOwner[message.topic_id]])
   }
 
-  // onSingleSend({ spotify_id, topic_id }) {
-  //   //Ws.getChannel('playlist:*').topic(`playlist:${spotify_id}`).broadcastToAll('[event name]', playlistOwner[topic_id])
-  //   this.socket.broadcast('[event name]', 'Hello People!')
-  // }
 }
 
 module.exports = PlaylistController

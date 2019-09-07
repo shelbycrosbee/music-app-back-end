@@ -30,5 +30,5 @@ Route.put('/users/activeStatus', 'UserController.activeToggle');
 
 Route.put('/users/setTopicID', 'UserController.setTopicID');
 
-Route.put('/users/toggleActive', 'UserController.toggleActive');
+
 
