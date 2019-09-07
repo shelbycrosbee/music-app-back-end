@@ -22,7 +22,8 @@ class PlaylistController {
   }
 
   onGivePosition(message) {
-    this.socket.emitTo('join', message.playlist, [message.friend_id]);
+    if(this.socket.id !== message.friend_id){
+    this.socket.emitTo('join', message.playlist, [message.friend_id])};
   }
 
   onAqui(message) {

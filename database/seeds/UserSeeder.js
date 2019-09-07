@@ -37,7 +37,7 @@ const userData = [
     topic_id: '1',
     playlist_master: 'The one',
     spotify_id: '22f63oznp4huleaxulv63sjxi',
-    uri_link: '48Jk76ryIuXOcOcK2wvDNP'
+    uri_link: '0dSNGcFcAoGPxQLpiBqzT4'
   },
   {
     display_name: 'Chris',

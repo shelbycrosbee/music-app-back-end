@@ -10,7 +10,6 @@ class UserSchema extends Schema {
       table.boolean('active')
       table.string('display_name', 254)
       table.string('spotify_id', 80).notNullable().unique()
-      table.string('profile_pic', 254)
       table.boolean('Premium')
 
       //only for storing user's personal playlist

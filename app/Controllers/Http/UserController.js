@@ -24,11 +24,12 @@ class UserController {
   }
 
   async create({ request, response }) {
-    const { spotify_id } = request.all();
+    const { spotify_id, active, premium, display_name } = request.all();
     const user = await User.query().where(`spotify_id`, '=', spotify_id).fetch();
     let newUser = 'user already exists';
     if (!user.rows[0]) {
-      newUser = await User.create({ spotify_id, uri_link: '7GhIk7Il098yCjg4BQjzvb' });
+      newUser = await User.create({ spotify_id, active, premium, display_name, uri_link: '7GhIk7Il098yCjg4BQjzvb',
+     });
     }
     response.send(newUser);
   }

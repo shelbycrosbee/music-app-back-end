@@ -22,7 +22,6 @@ Factory.blueprint('App/Models/User', (faker, i, user) => {
     playlist_master: 'The one',
     spotify_id: user.spotify_id,
     uri_link: user.uri_link,
-    profile_pic: '',
     premium: true
   }
 })
