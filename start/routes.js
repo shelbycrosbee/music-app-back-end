@@ -17,7 +17,6 @@
 const Route = use('Route')
 Route.get('/health', () => { return "up" });
 
-Route.on('/').render('')
 
 Route.post('/user', 'UserController.create')
 
