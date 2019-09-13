@@ -15,8 +15,9 @@
 
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
+Route.get('/health', () => { return "up" });
 
-Route.on('/').render('chat')
+Route.on('/').render('')
 
 Route.post('/user', 'UserController.create')
 
