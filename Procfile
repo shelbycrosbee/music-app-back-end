@@ -1,1 +1,1 @@
-web: npm install && npm start && echo hopefully working
+web: npm install && ENV_SILENT=true npm start && echo hopefully working
