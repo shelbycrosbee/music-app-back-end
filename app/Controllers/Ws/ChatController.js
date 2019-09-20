@@ -7,7 +7,6 @@ class ChatController {
   }
 
   onMessage (message) {
-    debugger;
     this.socket.broadcastToAll('message', message)
     
 }

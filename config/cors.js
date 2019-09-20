@@ -17,7 +17,12 @@ module.exports = {
   |
   */
   origin: (incoming) => {
-    return incoming === 'https://syncd-up.herokuapp.com'
+    if (incoming === 'http://localhost:3000') {
+      return true
+    }
+    else {
+      return incoming === 'https://syncd-up.herokuapp.com'
+    }
   },
 
   /*
