@@ -17,7 +17,7 @@ module.exports = {
   |
   */
   origin: (incoming) => {
-    return incoming === 'https://syncd-up.herokuapp.com/'
+    return incoming === 'https://syncd-up.herokuapp.com'
   },
 
   /*
