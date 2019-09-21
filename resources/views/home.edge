@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body style='background-color:#cfcfcf;color:#8555b1'>
+  <h1> Welcome to the Montana Code School's Spotify Player API </h1>
+  <hr/>
+  <h2 style='color:#6a4d85'> Routes: </h2>
+    <ul>
+      <li> '/user' <ul>
+        <li> Type: Post </li>
+        <li> Params: spotify_id, active, premium, display_name </li>
+      </ul></li><br/>
+      <li> '/update' <ul>
+        <li> Type: Put </li>
+        <li> Params: spotify_id, uri_link </li>
+      </ul></li><br/>
+      <li> '/playlist' <ul>
+        <li> Type: Get </li>
+        <li> Params: request, response </li>
+      </ul></li><br/>
+      <li> '/users/active' <ul>
+        <li> Type: Get </li>
+        <li> Params: N/A </li>
+      </ul></li><br/>
+      <li> '/users/activeStatus' <ul>
+        <li> Type: Put </li>
+        <li> Params: spotify_id, topic_id, active </li>
+      </ul></li><br/>
+      <li> '/users/setTopicID' <ul>
+        <li> Type: Put </li>
+        <li> Params: spotify_id, topic_id </li>
+      </ul></li><br/>
+      <li> 'users/updatePlaylist' <ul>
+        <li> Type: Put </li>
+        <li> Params: spotify_id, playlist_uri </li>
+      </ul></li><br/>
+    </ul>
+</body>
+</html>

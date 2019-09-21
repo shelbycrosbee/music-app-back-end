@@ -17,6 +17,10 @@
 const Route = use('Route')
 Route.get('/health', () => { return "up" });
 
+Route.get('/', ({ view }) => {
+  return view.render('home')
+})
+
 
 Route.post('/user', 'UserController.create')
 
@@ -30,5 +34,6 @@ Route.put('/users/activeStatus', 'UserController.activeToggle');
 
 Route.put('/users/setTopicID', 'UserController.setTopicID');
 
+Route.put('users/updatePlaylist', 'UserController.storePlaylist')
 
 

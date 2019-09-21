@@ -45,9 +45,17 @@ class UserController {
   }
 
   async setTopicID({request, response}) {
-    const { spotify_id, topic_id} = request.all();
+    const { spotify_id, topic_id } = request.all();
     const user = await User.findBy('spotify_id',spotify_id);
     user.topic_id = topic_id;
+    await user.save();
+    response.send(user);
+  }
+
+  async storePlaylist({request, response}) {
+    const { spotify_id, playlist_uri } = request.all();
+    const user = await User.findBy('spotify_id',spotify_id);
+    user.uri_link = playlist_uri;
     await user.save();
     response.send(user);
   }
