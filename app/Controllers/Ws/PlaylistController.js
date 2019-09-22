@@ -1,16 +1,36 @@
 'use strict'
 const Ws = use('Ws')
+const User = use('App/Models/User');
+
 let playlistOwner = {};
+let activeUsers = {};
 
 
 class PlaylistController {
   constructor({ socket, request }) {
     this.socket = socket;
     this.request = request;
+    socket.on('close', () => {
+      this.deactivateUser(activeUsers[this.socket.id]);
+    })
+  }
+
+  async activateUser(spotify_id) {
+    const user = await User.findBy('spotify_id', spotify_id);
+    user.active = 1;
+    await user.save();
+  }
+
+  async deactivateUser(spotify_id) {
+    const user = await User.findBy('spotify_id', spotify_id);
+    user.active = 0;
+    await user.save();
   }
 
 
- async onInitialize({ spotify_id, topic_id }) {
+  async onInitialize({ spotify_id, topic_id }) {
+    activeUsers[this.socket.id] = spotify_id;
+    this.activateUser(spotify_id);
     // console.log(spotify_id);
     // console.log(topic_id);
     if (spotify_id === topic_id) {
@@ -22,8 +42,9 @@ class PlaylistController {
   }
 
   onGivePosition(message) {
-    if(this.socket.id !== message.friend_id){
-    this.socket.emitTo('join', message.playlist, [message.friend_id])};
+    if (this.socket.id !== message.friend_id) {
+      this.socket.emitTo('join', message.playlist, [message.friend_id])
+    };
   }
 
   onAqui(message) {
