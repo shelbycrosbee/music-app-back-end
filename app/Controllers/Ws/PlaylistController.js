@@ -15,6 +15,7 @@ class PlaylistController {
   async addEventListeners(){
     this.socket.on('close', () => {
       this.deactivateUser(activeUsers[this.socket.id]);
+      delete activeUsers[this.socket.id];
     })
   }
 
