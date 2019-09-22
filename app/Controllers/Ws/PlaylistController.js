@@ -19,9 +19,10 @@ class PlaylistController {
     })
   }
 
-  async activateUser(spotify_id) {
+  async activateUser(spotify_id, topic_id) {
     const user = await User.findBy('spotify_id', spotify_id);
     user.active = 1;
+    user.playlist_master = await User.findBy('spotify_id', topic_id).display_name;
     await user.save();
   }
 
@@ -35,7 +36,7 @@ class PlaylistController {
   async onInitialize({ spotify_id, topic_id }) {
     this.addEventListeners();
     activeUsers[this.socket.id] = spotify_id;
-    this.activateUser(spotify_id);
+    this.activateUser(spotify_id, topic_id);
     // console.log(spotify_id);
     // console.log(topic_id);
     if (spotify_id === topic_id) {
