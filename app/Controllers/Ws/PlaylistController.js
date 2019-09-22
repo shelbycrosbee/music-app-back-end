@@ -12,7 +12,7 @@ class PlaylistController {
     this.request = request;
   }
 
-  addEventListeners = () => {
+  async addEventListeners(){
     this.socket.on('close', () => {
       this.deactivateUser(activeUsers[this.socket.id]);
     })
@@ -31,7 +31,7 @@ class PlaylistController {
   }
 
 
-  onInitialize = async ({ spotify_id, topic_id }) => {
+  async onInitialize({ spotify_id, topic_id }) {
     this.addEventListeners();
     activeUsers[this.socket.id] = spotify_id;
     this.activateUser(spotify_id);
