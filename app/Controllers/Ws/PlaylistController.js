@@ -31,6 +31,10 @@ class PlaylistController {
     this.socket.emitTo('donde', { friend_id: this.socket.id }, [playlistOwner[message.topic_id]])
   }
 
+  onGiveGlobalPosition(message) {
+    this.socket.broadcast('join', message.playlist);
+  }
+
 }
 
 module.exports = PlaylistController
