@@ -22,7 +22,8 @@ class PlaylistController {
   async activateUser(spotify_id, topic_id) {
     const user = await User.findBy('spotify_id', spotify_id);
     user.active = 1;
-    user.playlist_master = await User.findBy('spotify_id', topic_id).display_name;
+    const master = await User.findBy('spotify_id', topic_id);
+    user.playlist_master = master.display_name;
     await user.save();
   }
 
